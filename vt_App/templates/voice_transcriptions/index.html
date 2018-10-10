@@ -1,0 +1,42 @@
+{% extends "voice_transcriptions/base.html" %}
+
+{% block content %}
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Voice Transcription</h1>
+          <p class="lead text-muted">Voice transcription based on Xunfei open platform.</p>
+        </div>
+      </section>
+        <div class="container ">
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+		        </div>
+                <div class="col-md-4 column">
+                    <form  role="form" class="center-block" action="{% url 'voice_transcriptions:upload_file' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <hr class="mb-4">
+                    <p>请选择您要上传的文件：</p>
+                    <div class="form-group">
+                        <label class="sr-only" for="inputfile">选择文件</label>
+                        <input type="file" id="inputfile"  multiple="multiple" name="inputfile">
+                    </div>
+                    <p>支持的音频文件格式：wav,flac,opus,m4a,mp3</p>
+                    <hr class="mb-4">
+                    <p>请选择您需要的功能：</p>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="Timestamp" name="features" value="01">
+                        <label class="custom-control-label" for="Timestamp">时间戳</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="speech_analysis" name="features" value="02">
+                        <label class="custom-control-label" for="speech_analysis">词性分析</label>
+                    </div>
+                    <hr class="mb-4">
+                    <button type="submit" class="btn btn-primary my-2">提交</button>
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
